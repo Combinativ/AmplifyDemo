@@ -19,6 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
 	axios
 		.get(API_URL + "user", tokenConfig(getState))
 		.then((res) => {
+			console.log("authentication response: ", res.data);
 			dispatch({
 				type: USER_LOADED,
 				payload: res.data,
