@@ -26,7 +26,7 @@ export class Contents extends Component {
 						</Table.Row>
 					</Table.Header>
 					<Table.Body>
-						{this.props.contents.map((content) => (
+						{this.props.contents?.map((content) => (
 							<Table.Row key={content.id}>
 								<Table.Cell width={1}>{content.id}</Table.Cell>
 								<Table.Cell width={4}>{content.name}</Table.Cell>

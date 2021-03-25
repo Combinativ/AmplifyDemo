@@ -4,8 +4,8 @@ import { GET_ERRORS } from "./types";
 export const showError = (err) => {
 	const errors = {
 		//creating error payload
-		msg: err.response.data,
-		status: err.response.status,
+		msg: err.response?.data,
+		status: err.response?.status,
 	};
 	//returns to errorReducer which handles the case of GET_ERRORS
 	return {
