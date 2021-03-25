@@ -25,7 +25,7 @@ export class Login extends Component {
 	};
 	render() {
 		if (this.props.isAuthenticated) {
-			console.log("yeet to dashboard");
+			console.log("yeet to dashboard", this.props.isAuthenticated);
 
 			return <Redirect to="/" />;
 		}
