@@ -9,9 +9,9 @@ import {
 	LOGOUT_SUCCESS,
 	REGISTER_SUCCESS,
 	REGISTER_FAIL,
+	BACKEND_URL,
 } from "./types";
-
-const API_URL = "/api/auth/";
+const API_URL = BACKEND_URL + "/api/auth/";
 //CHECK TOKEN AND LOAD USER
 export const loadUser = () => (dispatch, getState) => {
 	//User Loading

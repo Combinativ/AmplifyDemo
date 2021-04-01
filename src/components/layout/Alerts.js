@@ -14,14 +14,14 @@ export class Alerts extends Component {
 		//Error alert display connected via errorReducer
 		if (error !== prevProps.error) {
 			//if error message updates then
-			if (error.msg.name) alert.error(`Name: ${error.msg.name.join()}`); //django returns an array as a response hence using join() to convert it to string
-			if (error.msg.email) alert.error(`Email: ${error.msg.email.join()}`);
-			if (error.msg.message)
-				alert.error(`message: ${error.msg.message.join()}`);
-			if (error.msg.non_field_errors)
-				alert.error(error.msg.non_field_errors.join());
-			if (error.msg.username)
-				alert.error(`username,${error.msg.username.join()}`);
+			if (error.msg?.name) alert.error(`Name: ${error.msg?.name.join()}`); //django returns an array as a response hence using join() to convert it to string
+			if (error.msg?.email) alert.error(`Email: ${error.msg?.email.join()}`);
+			if (error.msg?.message)
+				alert.error(`message: ${error.msg?.message.join()}`);
+			if (error.msg?.non_field_errors)
+				alert.error(error.msg?.non_field_errors.join());
+			if (error.msg?.username)
+				alert.error(`username,${error.msg?.username.join()}`);
 		}
 		//Message alert display connected via messageReducer
 		if (message !== prevProps.message) {
