@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../redux/actions/authAction";
+import axios from "axios";
 export class Login extends Component {
 	state = {
 		email: "",
@@ -13,6 +14,17 @@ export class Login extends Component {
 		login: PropTypes.func.isRequired,
 		isAuthenticated: PropTypes.bool,
 	};
+
+	componentDidMount() {
+		axios.get('https://8nv54i9rbl.execute-api.ap-south-1.amazonaws.com/dev/api/test')		
+		.then((res) => {
+			console.log("response", res.data);
+		})
+		.catch((err) => {
+			console.log("error: ", err);
+		});
+	}
+
 	handleOnChange = (e) =>
 		this.setState({
 			[e.target.name]: e.target.value,
@@ -59,6 +71,7 @@ export class Login extends Component {
 						<Button onClick={this.handleOnSubmit} type="submit" color='teal'>
 							Submit
 						</Button>
+						<h4>MODIFIED</h4>
 					</div>
 				</Form>
 			</Container>
