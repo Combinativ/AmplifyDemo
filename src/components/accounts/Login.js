@@ -20,7 +20,7 @@ export class Login extends Component {
 		axios.get(BACKEND_URL+'/api/test')		
 		.then((res) => {
 			console.log("response", res.data);
-			testPost();
+			this.testPost();
 		})
 		.catch((err) => {
 			console.log("error: ", err);
