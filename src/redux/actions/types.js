@@ -12,4 +12,4 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
-export const BACKEND_URL = "https://6cdfyjamy3.execute-api.ap-south-1.amazonaws.com/dev";
+export const BACKEND_URL = "https://7gp5q0txb6.execute-api.ap-south-1.amazonaws.com/dev";
