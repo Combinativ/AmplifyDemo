@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../redux/actions/authAction";
+import {BACKEND_URL} from "../../redux/actions/types"
 import axios from "axios";
 export class Login extends Component {
 	state = {
@@ -16,15 +17,24 @@ export class Login extends Component {
 	};
 
 	componentDidMount() {
-		axios.get('https://8nv54i9rbl.execute-api.ap-south-1.amazonaws.com/dev/api/test')		
+		axios.get(BACKEND_URL+'/api/test')		
 		.then((res) => {
 			console.log("response", res.data);
+			testPost();
 		})
 		.catch((err) => {
 			console.log("error: ", err);
 		});
 	}
-
+	testPost=()=>{
+		axios.post(BACKEND_URL+'/api/test2')
+		.then((res)=>{
+			console.log("Response ", res.data);
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	}
 	handleOnChange = (e) =>
 		this.setState({
 			[e.target.name]: e.target.value,
