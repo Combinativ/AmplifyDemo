@@ -9,9 +9,9 @@ import {
 	LOGOUT_SUCCESS,
 	REGISTER_SUCCESS,
 	REGISTER_FAIL,
+	BACKEND_URL,
 } from "./types";
-
-const API_URL = "/api/auth/";
+const API_URL = BACKEND_URL + "/api/auth/";
 //CHECK TOKEN AND LOAD USER
 export const loadUser = () => (dispatch, getState) => {
 	//User Loading
@@ -19,6 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
 	axios
 		.get(API_URL + "user", tokenConfig(getState))
 		.then((res) => {
+			console.log("authentication response: ", res.data);
 			dispatch({
 				type: USER_LOADED,
 				payload: res.data,
