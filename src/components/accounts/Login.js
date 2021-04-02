@@ -71,7 +71,7 @@ export class Login extends Component {
 						<Button onClick={this.handleOnSubmit} type="submit" color='teal'>
 							Submit
 						</Button>
-						<h4>MODIFIED</h4>
+						<h4 style={{color: '#fff'}}>MODIFIED</h4>
 					</div>
 				</Form>
 			</Container>
