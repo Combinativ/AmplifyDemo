@@ -6,7 +6,7 @@ import { showError } from "./errorAction";
 import { createMessage } from "./messagesAction";
 import { tokenConfig } from "./authAction"; // helper method to get Tokenized axios config
 import axios from "axios";
-const API_URL = BACKEND_URL + "api/contents";
+const API_URL = BACKEND_URL + "/api/contents";
 export const getContents = () => (dispatch, getState) => {
 	//Fetch content
 	axios
