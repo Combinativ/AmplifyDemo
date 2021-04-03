@@ -13,4 +13,4 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 
-export const BACKEND_URL = "https://5ptn9a9w75.execute-api.ap-south-1.amazonaws.com/dev";
+export const BACKEND_URL = "https://7aj8mmam0g.execute-api.ap-south-1.amazonaws.com/dev";
