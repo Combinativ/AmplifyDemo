@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { login } from "../../redux/actions/authAction";
 import {BACKEND_URL} from "../../redux/actions/types"
 import axios from "axios";
+import S3Uploader from "../contents/S3Uploader";
 export class Login extends Component {
 	state = {
 		email: "",
@@ -50,8 +51,8 @@ export class Login extends Component {
 	render() {
 		if (this.props.isAuthenticated) {
 			console.log("yeet to dashboard", this.props.isAuthenticated);
-
-			// return <Redirect to="/" />;
+			// this part is iffy if no response is sent back
+			return <Redirect to="/" />;
 		}
 		const { email, password } = this.state;
 		return (
@@ -83,7 +84,7 @@ export class Login extends Component {
 						<Button onClick={this.handleOnSubmit} type="submit" color='teal'>
 							Submit
 						</Button>
-						<h4 style={{color: '#fff'}}>MODIFIED</h4>
+						<S3Uploader />
 					</div>
 				</Form>
 			</Container>
