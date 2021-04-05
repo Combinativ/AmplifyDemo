@@ -20,32 +20,72 @@ const S3Uploader = () => {
   }
 
   var ReactS3Uploader = require('react-s3-uploader');
+  const url = BACKEND_URL + "/api/signed_url";
+
+  const onUploadStart = () => {
+    console.log("Upload is starting");
+  }
+
+  const onSignedUrl = () => {
+    console.log("signed url acquired");
+  }
+
+  const onUploadProgress = () => {
+    console.log("uploading");
+  }
+
+  const onUploadError = () => {
+    console.log("Error on upload");
+  }
+
+  const onFinish = () => {
+    console.log("Finished Upload");
+  }
+
   return (  
     <>
       <h1>uploader</h1>
-      <Button onClick={onRequestUrl}>
+      {/* <Button onClick={onRequestUrl}>
         Request URL
-      </Button>
+      </Button> */}
       <ReactS3Uploader 
-        // signingUrl="/s3/sign"
-        // signingUrlMethod="GET"
+        signingUrl={url}
+        signingUrlMethod="POST"
         // accept="image/*"
-        // s3path="/uploads/"
-        // preprocess={this.onUploadStart}
-        // onSignedUrl={this.onSignedUrl}
-        // onProgress={this.onUploadProgress}
-        // onError={this.onUploadError}
-        // onFinish={this.onUploadFinish}
+        s3path="/uploads/"
+        // preprocess={onUploadStart}
+        // onSignedUrl={onSignedUrl}
+        // onProgress={onUploadProgress}
+        // onError={onUploadError}
+        // onFinish={onUploadFinish}
         // signingUrlHeaders={{ additional: headers }}
         // signingUrlQueryParams={{ additional: query-params }}
-        // signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
-        // uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
-        // contentDisposition="auto"
-        // scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
-        // server="http://cross-origin-server.com"
+        signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
+        uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
+        contentDisposition="auto"
         // inputRef={cmp => this.uploadInput = cmp}
-        // autoUpload={true}
+        autoUpload={true}
       />
+      {/* <ReactS3Uploader 
+        signingUrl="/s3/sign"
+        signingUrlMethod="GET"
+        accept="image/*"
+        s3path="/uploads/"
+        preprocess={this.onUploadStart}
+        onSignedUrl={this.onSignedUrl}
+        onProgress={this.onUploadProgress}
+        onError={this.onUploadError}
+        onFinish={this.onUploadFinish}
+        signingUrlHeaders={{ additional: headers }}
+        signingUrlQueryParams={{ additional: query-params }}
+        signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
+        uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
+        contentDisposition="auto"
+        scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
+        server="http://cross-origin-server.com"
+        inputRef={cmp => this.uploadInput = cmp}
+        autoUpload={true}
+      /> */}
     </>
   );
 }
