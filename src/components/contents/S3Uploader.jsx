@@ -1,11 +1,28 @@
+import axios from 'axios';
 import React from 'react';
+import { Button } from 'semantic-ui-react';
+
+import {BACKEND_URL} from '../../redux/actions/types';
 
 const S3Uploader = () => {
+
+  const onRequestUrl = () => {
+    const url = BACKEND_URL + "/api/signed_url";
+    axios.post(url).then((res) => {
+			console.log("Request successful: ", res.data);
+		})
+		.catch((err) => {
+      console.log("request failed: ", err.data);
+		});
+  }
 
   var ReactS3Uploader = require('react-s3-uploader');
   return (  
     <>
       <h1>uploader</h1>
+      <Button onClick={onRequestUrl}>
+        Request URL
+      </Button>
       <ReactS3Uploader 
         // signingUrl="/s3/sign"
         // signingUrlMethod="GET"
