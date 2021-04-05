@@ -8,7 +8,10 @@ const S3Uploader = () => {
 
   const onRequestUrl = () => {
     const url = BACKEND_URL + "/api/signed_url";
-    axios.post(url).then((res) => {
+    const data = {
+      object_name: 'myobject'
+    }
+    axios.post(url, data).then((res) => {
 			console.log("Request successful: ", res.data);
 		})
 		.catch((err) => {
