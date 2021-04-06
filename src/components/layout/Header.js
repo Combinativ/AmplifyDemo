@@ -57,7 +57,7 @@ export class Header extends Component {
 		return (
 				<Menu stackable size="massive" style={{backgroundColor: '#212121'}} inverted pointing secondary>
 					<Menu.Item header as={Link} to="/">
-						FullStAck v1.086
+						FullStAck v1.087
 					</Menu.Item>
 					{isAuthenticated ? authLinks : guestLinks}
 				</Menu>

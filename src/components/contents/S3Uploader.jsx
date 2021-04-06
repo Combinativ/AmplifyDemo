@@ -8,7 +8,7 @@ import {BACKEND_URL} from '../../redux/actions/types';
 const S3Uploader = () => {
 
   const onRequestUrl = () => {
-    const url = BACKEND_URL + "/api/signed_url1";
+    const url = BACKEND_URL + "/api/signed_url";
     const data = {
       object_name: 'myobject'
     }
