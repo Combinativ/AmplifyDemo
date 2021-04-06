@@ -21,6 +21,7 @@ const S3Uploader = () => {
   }
 
   var ReactS3Uploader = require('react-s3-uploader');
+  const url = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl'
   const url1 = BACKEND_URL + "/api/signed_url1";
   const url2 = BACKEND_URL + "/api/signed_url2";
   const url3 = BACKEND_URL + "/api/signed_url3";
@@ -51,7 +52,7 @@ const S3Uploader = () => {
       contentType: file.type
     };
    
-    axios.post(url4, { params })
+    axios.post(url, { params })
     .then(data => {
       console.log("data: ", data.data);
       callback(data.data);
@@ -83,7 +84,7 @@ const S3Uploader = () => {
         contentDisposition="auto"
       />
       <ReactS3Uploader 
-        signingUrl={url1}
+        signingUrl={url}
         signingUrlMethod="POST"
         accept="image/*"
         //s3path="/uploads/"
