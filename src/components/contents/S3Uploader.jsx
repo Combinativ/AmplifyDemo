@@ -4,6 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 import {BACKEND_URL} from '../../redux/actions/types';
 
+
 const S3Uploader = () => {
 
   const onRequestUrl = () => {
@@ -44,13 +45,42 @@ const S3Uploader = () => {
   const onFinish = () => {
     console.log("Finished Upload");
   }
-
+  function getSignedUrl(file, callback) {
+    const params = {
+      objectName: file.name,
+      contentType: file.type
+    };
+   
+    axios.get(url1, { params })
+    .then(data => {
+      callback(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+   
+   
+  
   return (  
     <>
       <h1>uploader</h1>
       {/* <Button onClick={onRequestUrl}>
         Request URL
       </Button> */}
+      <h4>custom</h4>
+      <ReactS3Uploader
+        // className={uploaderClassName}
+        getSignedUrl={getSignedUrl}
+        accept="image/*"
+        // onProgress={onProgress}
+        // onError={onError}
+        // onFinish={onFinish}
+        uploadRequestHeaders={{
+          'x-amz-acl': 'public-read'
+        }}
+        contentDisposition="auto"
+      />
       <ReactS3Uploader 
         signingUrl={url1}
         signingUrlMethod="POST"
