@@ -7,7 +7,7 @@ import {BACKEND_URL} from '../../redux/actions/types';
 const S3Uploader = () => {
 
   const onRequestUrl = () => {
-    const url = BACKEND_URL + "/api/signed_url";
+    const url = BACKEND_URL + "/api/signed_url1";
     const data = {
       object_name: 'myobject'
     }
@@ -20,7 +20,10 @@ const S3Uploader = () => {
   }
 
   var ReactS3Uploader = require('react-s3-uploader');
-  const url = BACKEND_URL + "/api/signed_url";
+  const url1 = BACKEND_URL + "/api/signed_url1";
+  const url2 = BACKEND_URL + "/api/signed_url2";
+  const url3 = BACKEND_URL + "/api/signed_url3";
+  const url4 = BACKEND_URL + "/api/signed_url4";
 
   const onUploadStart = () => {
     console.log("Upload is starting");
@@ -49,9 +52,63 @@ const S3Uploader = () => {
         Request URL
       </Button> */}
       <ReactS3Uploader 
-        signingUrl={url}
+        signingUrl={url1}
         signingUrlMethod="POST"
-        // accept="image/*"
+        accept="image/*"
+        //s3path="/uploads/"
+        // preprocess={onUploadStart}
+        // onSignedUrl={onSignedUrl}
+        // onProgress={onUploadProgress}
+        // onError={onUploadError}
+        // onFinish={onUploadFinish}
+        //signingUrlHeaders={{ additional: headers }}
+        //signingUrlQueryParams={{ additional: query-params }}
+        //signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
+        //uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
+        //contentDisposition="auto"
+        // inputRef={cmp => this.uploadInput = cmp}
+        //autoUpload={true}
+      />
+      <ReactS3Uploader 
+        signingUrl={url2}
+        signingUrlMethod="POST"
+        accept="image/*"
+        //s3path="/uploads/"
+        // preprocess={onUploadStart}
+        // onSignedUrl={onSignedUrl}
+        // onProgress={onUploadProgress}
+        // onError={onUploadError}
+        // onFinish={onUploadFinish}
+        //signingUrlHeaders={{ additional: headers }}
+        //signingUrlQueryParams={{ additional: query-params }}
+        //signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
+        //uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
+        //contentDisposition="auto"
+        // inputRef={cmp => this.uploadInput = cmp}
+        //autoUpload={true}
+      />
+      <ReactS3Uploader 
+        signingUrl={url3}
+        signingUrlMethod="POST"
+        accept="image/*"
+        //s3path="/uploads/"
+        // preprocess={onUploadStart}
+        // onSignedUrl={onSignedUrl}
+        // onProgress={onUploadProgress}
+        // onError={onUploadError}
+        // onFinish={onUploadFinish}
+        //signingUrlHeaders={{ additional: headers }}
+        //signingUrlQueryParams={{ additional: query-params }}
+        //signingUrlWithCredentials={ true }      // in case when need to pass authentication credentials via CORS
+        //uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}  // this is the default
+        //contentDisposition="auto"
+        // inputRef={cmp => this.uploadInput = cmp}
+        //autoUpload={true}
+      />
+      <ReactS3Uploader 
+        signingUrl={url4}
+        signingUrlMethod="POST"
+        accept="image/*"
         //s3path="/uploads/"
         // preprocess={onUploadStart}
         // onSignedUrl={onSignedUrl}
