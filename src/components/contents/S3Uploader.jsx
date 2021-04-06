@@ -53,7 +53,8 @@ const S3Uploader = () => {
    
     axios.post(url2, { params })
     .then(data => {
-      callback(data);
+      console.log("data: ", data);
+      callback(data.signedUrl);
     })
     .catch(error => {
       console.error(error);
