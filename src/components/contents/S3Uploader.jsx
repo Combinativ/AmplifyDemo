@@ -51,7 +51,7 @@ const S3Uploader = () => {
       contentType: file.type
     };
    
-    axios.post(url3, { params })
+    axios.post(url4, { params })
     .then(data => {
       console.log("data: ", data.data);
       callback(data.data);
