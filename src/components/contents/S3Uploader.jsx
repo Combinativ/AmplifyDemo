@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import {BACKEND_URL} from '../../redux/actions/types';
 
 const REQUEST_URL = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl';
-
+const SERVER = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com';
 
 const S3Uploader = () => {
 
@@ -87,6 +87,18 @@ const S3Uploader = () => {
         signingUrl={url}
         signingUrlMethod="POST"
         accept="image/*"
+      />
+      
+      <h4>Revised</h4>
+      <ReactS3Uploader 
+        signingUrl="/dev/getPreSignedUrl"
+        signingUrlMethod="POST"
+        accept="image/*"
+        server={SERVER}
+        // signingUrlHeaders={getAuthHeader()}
+        uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}
+        contentDisposition="auto"
+        scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
       />
       {/* <ReactS3Uploader 
         signingUrl="/s3/sign"
