@@ -7,6 +7,7 @@ import { login } from "../../redux/actions/authAction";
 import {BACKEND_URL} from "../../redux/actions/types"
 import axios from "axios";
 import S3Uploader from "../contents/S3Uploader";
+import { CustomS3Uploader } from "../contents/CustomS3Uploader";
 export class Login extends Component {
 	state = {
 		email: "",
@@ -84,7 +85,10 @@ export class Login extends Component {
 						<Button onClick={this.handleOnSubmit} type="submit" color='teal'>
 							Submit
 						</Button>
-						<S3Uploader />
+						<br/><br/>
+						{/* <S3Uploader /> */}
+						<h4>S3 Uploader</h4>
+						<CustomS3Uploader />
 					</div>
 				</Form>
 			</Container>
