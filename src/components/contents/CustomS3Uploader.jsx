@@ -23,6 +23,7 @@ const CustomS3Uploader = () => {
     const url = REQUEST_URL;
     axios.post(url).then((res) => {
 			console.log("Request successful: ", res.data);
+      return(res.data.uploadURL);
 		})
 		.catch((err) => {
       console.log("request failed: ", err.data);
@@ -45,7 +46,7 @@ const CustomS3Uploader = () => {
   const handleUpload = async () => {
     try {
       const presignedUrl = await getPresignedUrl();
-      // uploadToUrl(presignedUrl);
+      uploadToUrl(presignedUrl);
     } catch(err) {
       console.log("error in handle upload ", err);
     }
