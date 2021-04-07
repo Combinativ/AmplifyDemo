@@ -12,10 +12,7 @@ const S3Uploader = () => {
 
   const onRequestUrl = () => {
     const url = REQUEST_URL;
-    const data = {
-      object_name: 'myobject'
-    }
-    axios.post(url, data).then((res) => {
+    axios.post(url).then((res) => {
 			console.log("Request successful: ", res.data);
 		})
 		.catch((err) => {
