@@ -1,14 +1,17 @@
 import axios from 'axios';
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-
 import {BACKEND_URL} from '../../redux/actions/types';
+
+const REQUEST_URL = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl';
 
 
 const S3Uploader = () => {
 
+  var ReactS3Uploader = require('react-s3-uploader');
+
   const onRequestUrl = () => {
-    const url = BACKEND_URL + "/api/signed_url";
+    const url = REQUEST_URL;
     const data = {
       object_name: 'myobject'
     }
@@ -20,9 +23,7 @@ const S3Uploader = () => {
 		});
   }
 
-  var ReactS3Uploader = require('react-s3-uploader');
-  const url = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl'
-
+  const url = REQUEST_URL;
   const onUploadStart = () => {
     console.log("Upload is starting");
   }
@@ -42,6 +43,8 @@ const S3Uploader = () => {
   const onFinish = () => {
     console.log("Finished Upload");
   }
+
+
   function getSignedUrl(file, callback) {
     const params = {
       objectName: file.name,
@@ -51,7 +54,7 @@ const S3Uploader = () => {
     axios.post(url, { params })
     .then(data => {
       console.log("data: ", data.data);
-      callback(data.data);
+      callback(data);
     })
     .catch(error => {
       console.error(error);
@@ -63,9 +66,10 @@ const S3Uploader = () => {
   return (  
     <>
       <h1>uploader</h1>
-      {/* <Button onClick={onRequestUrl}>
+      <Button onClick={onRequestUrl}>
         Request URL
-      </Button> */}
+      </Button>
+      <br/><br/>
       <h4>custom</h4>
       <br/>
       <ReactS3Uploader
@@ -84,7 +88,7 @@ const S3Uploader = () => {
       <h4>Regular</h4>
       <ReactS3Uploader 
         signingUrl={url}
-        signingUrlMethod="PUT"
+        signingUrlMethod="POST"
         accept="image/*"
       />
       {/* <ReactS3Uploader 
