@@ -21,8 +21,9 @@ const CustomS3Uploader = () => {
   // fetches presigned url for S3 upload
   const getPresignedUrl = () => {
     const url = REQUEST_URL;
+    console.log("starting url request");
     axios.post(url).then((res) => {
-			console.log("Request successful: ", res.data);
+			console.log("Signed URL acquired: ", res.data);
       return(res.data.uploadURL);
 		})
 		.catch((err) => {
@@ -31,14 +32,15 @@ const CustomS3Uploader = () => {
   }
 
   const uploadToUrl = (url) => {
+    console.log("starting upload");
     let payload = new FormData();
     payload.append("myfile", file);
     axios.put(url, payload)
     .then((res) => {
-			console.log("Request successful: ", res.data);
+			console.log("Upload successful: ", res.data);
 		})
 		.catch((err) => {
-      console.log("request failed: ", err.data);
+      console.log("upload failed: ", err.data);
 		});
   }
 
