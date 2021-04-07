@@ -76,9 +76,9 @@ const S3Uploader = () => {
         // onProgress={onProgress}
         // onError={onError}
         // onFinish={onFinish}
-        uploadRequestHeaders={{
-          'x-amz-acl': 'public-read'
-        }}
+        // uploadRequestHeaders={{
+        //   'x-amz-acl': 'public-read'
+        // }}
         contentDisposition="auto"
       />
       <br/>
@@ -96,7 +96,7 @@ const S3Uploader = () => {
         accept="image/*"
         server={SERVER}
         // signingUrlHeaders={getAuthHeader()}
-        uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}
+        // uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}
         contentDisposition="auto"
         scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
       />
