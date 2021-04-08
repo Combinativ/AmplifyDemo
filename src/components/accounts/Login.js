@@ -87,7 +87,7 @@ export class Login extends Component {
 						</Button>
 						<br/><br/>
 						{/* <S3Uploader /> */}
-						<h4>S3 Uploader</h4>
+						<h4>S3 Uploader 2</h4>
 						<CustomS3Uploader />
 					</div>
 				</Form>
