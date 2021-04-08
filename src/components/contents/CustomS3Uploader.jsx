@@ -63,11 +63,11 @@ const CustomS3Uploader = () => {
     for(var key in signedFields){
 
       console.log(key,":", signedFields[key]);
-      payload.set(key, signedFields[key])
+      payload.append(key, signedFields[key])
     }
     // payload.append(signedFields)
     payload.append("file", file);
-    console.log("payload:",JSON.stringify(payload));
+    // console.log("payload:",JSON.stringify(payload));
     console.log(...payload)
     axios.post(signedData.url, payload)
     .then((res) => {
