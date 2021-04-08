@@ -34,7 +34,7 @@ const CustomS3Uploader = () => {
       uploadToS3Url(res.data)
 		})
 		.catch((err) => {
-      console.log("request failed: ", err.data);
+      console.log("request failed: ", err);
 		});
   }
 
