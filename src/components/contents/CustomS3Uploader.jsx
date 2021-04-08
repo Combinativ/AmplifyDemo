@@ -56,9 +56,9 @@ const CustomS3Uploader = () => {
     console.log("s3 uploading..", signed_data.url);
     let payload = new FormData();
     for(var key in signed_data.fields){
-      
-      console.log(key,":",signed_data[key]);
-      payload.append(key, signed_data[key])
+
+      console.log(key,":",signed_data.fields[key]);
+      payload.append(key, signed_data.fields[key])
     }
     // payload.append(signed_data.fields)
     payload.append("file", file);
