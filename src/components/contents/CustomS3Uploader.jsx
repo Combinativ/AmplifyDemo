@@ -66,7 +66,7 @@ const CustomS3Uploader = () => {
     payload.append("file", file);
     console.log("payload:",JSON.stringify(payload));
     console.log(...payload)
-    axios.put(signedData.url, payload)
+    axios.post(signedData.url, payload)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
 		})
