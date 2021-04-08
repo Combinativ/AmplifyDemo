@@ -56,7 +56,7 @@ const CustomS3Uploader = () => {
     let payload = new FormData();
     payload.append(signed_data.fields)
     payload.append("myfile", file);
-    axios.put(url, payload)
+    axios.put(signed_data.url, payload)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
 		})
