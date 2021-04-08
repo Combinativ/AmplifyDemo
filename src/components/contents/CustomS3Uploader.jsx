@@ -27,9 +27,11 @@ const CustomS3Uploader = () => {
     const url = REQUEST_URL;
     console.log("starting url request");
     axios.post(url).then((res) => {
-			console.log("Signed URL acquired: ", res.data);
-      let presignedUrl = res.data.uploadURL;
-      uploadToUrl(presignedUrl);
+			console.log("Signed URL acquired: ", res.data.url);
+      console.log("AWS fields:", res.data.fields);
+      // let presignedUrl = res.data.uploadURL;
+      // uploadToUrl(presignedUrl);
+
 		})
 		.catch((err) => {
       console.log("request failed: ", err.data);
