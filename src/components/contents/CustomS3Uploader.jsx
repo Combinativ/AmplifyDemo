@@ -2,12 +2,16 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 
-const REQUEST_URL = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl';
+let REQUEST_URL = 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/getPreSignedUrl';
 
+const REQUEST_URL2= 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/api/signed_url4';
+
+
+REQUEST_URL=REQUEST_URL2
 const CustomS3Uploader = () => {
 
   const [file, setFile] = useState();
-
+  
   const OnFileChange = (event) => {
     const content = event.target.files[0];
     let type = content.type.split("/")[0];
@@ -33,6 +37,7 @@ const CustomS3Uploader = () => {
   }
 
   const uploadToUrl = (url) => {
+
     console.log("starting upload");
     let payload = new FormData();
     payload.append("myfile", file);
