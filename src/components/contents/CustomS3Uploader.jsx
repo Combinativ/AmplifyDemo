@@ -31,7 +31,7 @@ const CustomS3Uploader = () => {
       console.log("AWS fields:", res.data.fields);
       // let presignedUrl = res.data.uploadURL;
       // uploadToUrl(presignedUrl);
-
+      uploadtToS3Url(res.data)
 		})
 		.catch((err) => {
       console.log("request failed: ", err.data);
@@ -49,6 +49,19 @@ const CustomS3Uploader = () => {
 		})
 		.catch((err) => {
       console.log("upload failed: ", err.data);
+		});
+  }
+
+  const uploadtToS3Url = (signed_data) => {
+    let payload = new FormData();
+    payload.append(signed_data.fields)
+    payload.append("myfile", file);
+    axios.put(url, payload)
+    .then((res) => {
+			console.log("S3 Upload successful: ", res.data);
+		})
+		.catch((err) => {
+      console.log("S3 upload failed: ", err.data);
 		});
   }
 
