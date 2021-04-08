@@ -53,7 +53,7 @@ const CustomS3Uploader = () => {
   }
 
   const uploadToS3Url = (signedData) => {
-    console.log("s3 uploading4..", signedData.url,signedData.fields);
+    console.log("s3 uploading5..", signedData.url,signedData.fields);
     let payload = new FormData();
     let signedFields =signedData.fields
     console.log("signed_fields:", signedFields);
@@ -65,7 +65,7 @@ const CustomS3Uploader = () => {
     // payload.append(signedFields)
     payload.append("file", file);
     console.log("payload:",JSON.stringify(payload));
-    console.table(payload)
+    console.log(...payload)
     axios.put(signedData.url, payload)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
