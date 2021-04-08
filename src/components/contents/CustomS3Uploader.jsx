@@ -31,7 +31,7 @@ const CustomS3Uploader = () => {
       console.log("AWS fields:", res.data.fields);
       // let presignedUrl = res.data.uploadURL;
       // uploadToUrl(presignedUrl);
-      uploadtToS3Url(res.data)
+      uploadToS3Url(res.data)
 		})
 		.catch((err) => {
       console.log("request failed: ", err.data);
@@ -52,7 +52,8 @@ const CustomS3Uploader = () => {
 		});
   }
 
-  const uploadtToS3Url = (signed_data) => {
+  const uploadToS3Url = (signed_data) => {
+    console.log("s3 uploading..", signed_data.url);
     let payload = new FormData();
     payload.append(signed_data.fields)
     payload.append("myfile", file);
