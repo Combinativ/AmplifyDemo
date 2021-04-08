@@ -59,7 +59,7 @@ const CustomS3Uploader = () => {
     console.log("signed_fields:", signedFields);
     for(var key in signedFields){
 
-      console.log(key,":",signedFields[key]);
+      console.log(key,":", JSON.stringify(signedFields[key]));
       payload.append(key, JSON.stringify(signedFields[key]))
     }
     // payload.append(signedFields)
