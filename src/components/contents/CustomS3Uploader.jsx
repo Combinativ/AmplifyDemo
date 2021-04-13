@@ -42,7 +42,7 @@ const CustomS3Uploader = ({requestUrl}) => {
   }
 
   // uploads file to presigned url
-  const uploadToS3Url = (signed_data) => {
+  const uploadToS3Url = (signedData) => {
     const options = {
       onUploadProgress: (ProgressEvent) => {
         const {loaded, total} = ProgressEvent;
@@ -50,9 +50,9 @@ const CustomS3Uploader = ({requestUrl}) => {
         console.log(`${loaded}kb of ${total}kb | ${percent}%`);
       }
     }
-    console.log("s3 uploading..", signed_data.url);
+    console.log("s3 uploading..", signedData.url);
     let payload = new FormData();
-    let signedFields =signedData.fields
+    let signedFields =signedData.fields;
     console.log("signed_fields:", signedFields);
     for(var key in signedFields){
 
@@ -64,7 +64,7 @@ const CustomS3Uploader = ({requestUrl}) => {
     console.log(payload);
 
     // perform put operation on presigned url
-    axios.put(signed_data.url, payload, options)
+    axios.put(signedData.url, payload, options)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
 		})
