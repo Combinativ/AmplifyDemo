@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Message, Progress } from 'semantic-ui-react';
 
 /**
  * CustomS3Uploader: Customised S3 uploader button that can request an API endpoint to get presigned url and then upload selected file 
@@ -11,6 +11,10 @@ import { Button, Icon } from 'semantic-ui-react';
 const CustomS3Uploader = ({requestUrl}) => {
 
   const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
+  const [loadPercent, setLoadPercent] = useState(0);
+
+  const [message, sestMessage] = useState(undefined);
   
   const OnFileChange = (event) => {
     const content = event.target.files[0];
@@ -20,6 +24,11 @@ const CustomS3Uploader = ({requestUrl}) => {
       setFile(content);
     } else {
       console.log("error: not an image");
+      sestMessage({
+        type: 'negative',
+        title: 'Not valid file',
+        text: 'Please upload an image or video',
+      });
     }
   }
   // fetches presigned url and uploads to that url
@@ -38,19 +47,30 @@ const CustomS3Uploader = ({requestUrl}) => {
 		})
 		.catch((err) => {
       console.log("request failed: ", err);
+      sestMessage({
+        type: 'negative',
+        title: 'Upload Request Failed',
+        text: 'Upload couln\'t be requested, Please try again later.',
+      });
 		});
   }
 
   // uploads file to presigned url
   const uploadToS3Url = (signedData) => {
+    
+    setLoading(true);
+    setLoadPercent(0);
+    // prepare options for handling progress event
     const options = {
       onUploadProgress: (ProgressEvent) => {
         const {loaded, total} = ProgressEvent;
         let percent = Math.floor((loaded*100)/total);
         console.log(`${loaded}kb of ${total}kb | ${percent}%`);
+        setLoadPercent(percent);
       }
     }
     console.log("s3 uploading..", signedData.url);
+
     let payload = new FormData();
     let signedFields =signedData.fields;
     console.log("signed_fields:", signedFields);
@@ -67,9 +87,21 @@ const CustomS3Uploader = ({requestUrl}) => {
     axios.put(signedData.url, payload, options)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
+      sestMessage({
+        type: 'positive',
+        title: 'Upload Successful!',
+        text: 'Your file has be successfully uploaded!',
+      });
+      setLoading(false);
 		})
 		.catch((err) => {
       console.log("S3 upload failed: ", err.data);
+      setLoading(false);
+      sestMessage({
+        type: 'negative',
+        title: 'Upload process failed',
+        text: 'Upload process has failed, please try again later.',
+      });
 		});
   }
 
@@ -83,22 +115,45 @@ const CustomS3Uploader = ({requestUrl}) => {
   }
 
   return ( 
-    <div>
+    <div style={styles.root}>
+      <center>
       <input onChange={OnFileChange} type="file" id="myfile" style={{display: 'none'}}/>
       <h4>{file? file.name : "Choose a file..."}</h4>
       {
-        file?
-        <>
-          {/* clears selected file */}
-          <Button onClick={()=>setFile(undefined)}><Icon name='close' />Clear</Button>
-          {/* uploads to bucket  */}
-          <Button color="orange" onClick={handleUpload}><Icon name='upload' />Upload</Button>
-        </>
-        :
-        <Button onClick={() => {document.getElementById('myfile').click()}}><Icon name='hand pointer' />Choose</Button>
+        loading &&
+          <Progress inverted percent={loadPercent}/>
       }
+      {
+        message &&
+        <Message positive={message.type === 'positive'} negative={message.type === 'negative'}>
+          <Message.Header>{message.title}</Message.Header>
+          <p>{message.text}</p>
+        </Message>
+      }
+      <div onClick={()=>sestMessage(undefined)}>
+        {
+          file?
+          <>
+            {/* clears selected file */}
+            <Button onClick={()=>setFile(undefined)}><Icon name='close' />Clear</Button>
+            {/* uploads to bucket  */}
+            <Button color="orange" onClick={handleUpload}><Icon name='upload' />Upload</Button>
+          </>
+          :
+          <Button onClick={() => {document.getElementById('myfile').click()}}><Icon name='hand pointer' />Choose</Button>
+        }
+      </div>
+      </center>
     </div>
   );
 }
- 
+
+const styles = {
+  root: {
+    padding: '20px',
+    // backgroundColor: 'white',
+    minWidth: '500px'
+  }
+}
+
 export {CustomS3Uploader};
