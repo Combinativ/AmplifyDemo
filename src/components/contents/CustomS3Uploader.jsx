@@ -26,7 +26,10 @@ const CustomS3Uploader = ({requestUrl}) => {
   const getUrlAndUpload = () => {
     const url = requestUrl;
     console.log("starting url request");
-    axios.post(url).then((res) => {
+    let data ={
+      "file_name": file.name
+    }
+    axios.post(url, data).then((res) => {
 			console.log("Signed URL acquired: ", res.data.url);
       console.log("AWS fields:", res.data.fields);
       // let presignedUrl = res.data.uploadURL;
@@ -49,12 +52,14 @@ const CustomS3Uploader = ({requestUrl}) => {
     }
     console.log("s3 uploading..", signed_data.url);
     let payload = new FormData();
-    for(var key in signed_data.fields){
+    let signedFields =signedData.fields
+    console.log("signed_fields:", signedFields);
+    for(var key in signedFields){
 
-      console.log(key,":",signed_data.fields[key]);
-      payload.append(key, signed_data.fields[key])
+      console.log(key,":", signedFields[key]);
+      payload.append(key, signedFields[key])
     }
-    // payload.append(signed_data.fields)
+    // payload.append(signedFields)
     payload.append("file", file);
     console.log(payload);
 
