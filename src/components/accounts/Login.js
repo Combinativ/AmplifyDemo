@@ -8,6 +8,9 @@ import {BACKEND_URL} from "../../redux/actions/types"
 import axios from "axios";
 import S3Uploader from "../contents/S3Uploader";
 import { CustomS3Uploader } from "../contents/CustomS3Uploader";
+
+const REQUEST_URL2= 'https://vbs6l9lgla.execute-api.ap-south-1.amazonaws.com/dev/api/signed_url4';
+
 export class Login extends Component {
 	state = {
 		email: "",
@@ -88,7 +91,7 @@ export class Login extends Component {
 						<br/><br/>
 						{/* <S3Uploader /> */}
 						<h4>S3 Uploader 2</h4>
-						<CustomS3Uploader />
+						<CustomS3Uploader requestUrl={REQUEST_URL2}/>
 					</div>
 				</Form>
 			</Container>
