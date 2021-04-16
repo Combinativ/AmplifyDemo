@@ -84,7 +84,7 @@ const CustomS3Uploader = ({requestUrl}) => {
     console.log(payload);
 
     // perform put operation on presigned url
-    axios.put(signedData.url, payload, options)
+    axios.put(signedData.url, payload)
     .then((res) => {
 			console.log("S3 Upload successful: ", res.data);
       sestMessage({
